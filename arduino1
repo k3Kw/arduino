@@ -1,0 +1,49 @@
+#include <Stepper.h> // Include the header file
+
+// change this to the number of steps on your motor
+#define STEPS 32
+
+// create an instance of the stepper class using the steps and pins
+Stepper stepper(STEPS, 10, 9, 11, 12);
+
+int val = 0;
+int interval = 1000;
+int ledPin = 8;
+int ldr=A0;
+int valueldr;
+int ledstate = LOW;  //ledstate used to set the led
+long previousMillis = 0;  //will score last time LED was updated
+
+
+
+void setup() {
+  Serial.begin(9600);
+  stepper.setSpeed(500);
+  pinMode (ledPin,OUTPUT);
+  
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+ /* if (Serial.available()>0)
+  {
+    val = Serial.parseInt();
+    stepper.step(val);
+    Serial.println(val); //for debugging */
+    valueldr=analogRead(ldr);
+    Serial.println(valueldr);
+    if (valueldr>200)
+    {
+      stepper.step(50);
+    }
+    else
+    {
+      stepper.step(-50);
+    }
+
+  if (currentMillis-previousMillis > interval) {
+    previousMillis = currentMillis ; 
+
+  }
+    }
