@@ -1,0 +1,32 @@
+int laser=8;
+  int ldr=A1;
+  int value;
+  int buzzer=3; 
+  char data;
+void setup() {
+   pinMode (buzzer,OUTPUT);
+  pinMode (laser,OUTPUT);
+  Serial.begin(9600);
+ 
+ }
+
+void loop() {
+  value=analogRead(ldr);
+  Serial.println(value);
+  delay(250);
+
+  if (Serial.available()>0)
+  {
+    data=Serial.read();
+  }
+  if (data=='A')
+  digitalWrite(laser,HIGH);
+  else if (data=='S')
+  digitalWrite(laser,LOW);
+
+  if (value<800)
+  digitalWrite(buzzer,HIGH);
+  
+  else
+  digitalWrite(buzzer,LOW);
+  }
