@@ -1,0 +1,12 @@
+int rel=13;
+void setup() {
+  pinMode(rel.OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+digitalWrite(rel,HIGH);
+delay(2000);
+digitalWrite(rel,LOW);
+delay(2000);
+}
