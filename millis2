@@ -1,0 +1,26 @@
+int ledstate = LOW;  //ledstate used to set the led
+long previousMillis = 0;  //will score last time LED was updated
+
+void setup() 
+{
+  //set the digital pin as output :
+
+ pinMode (ledPin,OUTPUT);
+
+}
+
+void loop() 
+{
+  unsigned long currentMillis = millis();
+  
+  if (currentMillis-previousMillis > interval) {
+    previousMillis = currentMillis ; 
+
+  if (ledstate == LOW)
+  ledstate = HIGH;
+  else 
+  ledstate = LOW;
+
+  digitalWrite(ledPin , ledstate);
+  
+ }
